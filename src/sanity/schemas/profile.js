@@ -71,6 +71,12 @@ export default {
     options: {
         hotspot: true, // Enables cropping/positioning tools in the studio
     },
+    },
+    {
+      name: 'darkBackgroundImage',
+      title: 'Dark Mode Background Image (Night)',
+      type: 'image',
+      options: { hotspot: true },
     }
   ]
 }

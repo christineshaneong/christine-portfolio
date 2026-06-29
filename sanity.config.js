@@ -11,8 +11,8 @@ export default defineConfig({
   name: 'default',
   title: 'Christine Portfolio',
   basePath: '/studio',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: 'jxgugtpm',
+  dataset: 'production',
   plugins: [structureTool()],
   schema: {
     types: [profile, project, hobby],
