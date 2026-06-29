@@ -1,0 +1,303 @@
+[
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Professional Title"
+      },
+      {
+        "name": "eyebrow",
+        "type": "string",
+        "title": "Eyebrow Text (Small header above name)"
+      },
+      {
+        "name": "bio",
+        "type": "text",
+        "title": "Biography Description"
+      },
+      {
+        "name": "gpa",
+        "type": "string",
+        "title": "GPA String"
+      },
+      {
+        "options": {
+          "accept": ".pdf"
+        },
+        "name": "resume",
+        "type": "file",
+        "title": "Upload Resume PDF"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Profile Portrait (Stardew Valley Style)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "github",
+        "type": "url",
+        "title": "GitHub URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "linkedin",
+        "type": "url",
+        "title": "LinkedIn URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "instagram",
+        "type": "url",
+        "title": "Instagram URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "youtube",
+        "type": "url",
+        "title": "YouTube URL"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "backgroundImage",
+        "type": "image"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "darkBackgroundImage",
+        "type": "image",
+        "title": "Dark Mode Background Image (Night)"
+      }
+    ],
+    "name": "profile",
+    "type": "document",
+    "title": "Profile Settings"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "title": "Project Name"
+      },
+      {
+        "description": "e.g., \"full-stack\", \"frontend\"",
+        "name": "tag",
+        "type": "string",
+        "title": "Project Tag"
+      },
+      {
+        "initialValue": true,
+        "name": "isLive",
+        "type": "boolean",
+        "title": "Is Live?"
+      },
+      {
+        "rows": 3,
+        "name": "desc",
+        "type": "text",
+        "title": "Description"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "chips",
+        "type": "array",
+        "title": "Technologies Used"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "liveUrl",
+        "type": "url",
+        "title": "Live Deployment URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "githubUrl",
+        "type": "url",
+        "title": "GitHub Repository URL"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Project Screenshot"
+      }
+    ],
+    "name": "project",
+    "type": "document",
+    "title": "Featured Projects"
+  },
+  {
+    "fields": [
+      {
+        "description": "Used for sorting, e.g., 1, 2, 3",
+        "name": "id",
+        "type": "number",
+        "title": "Order Display Number"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Hobby Title"
+      },
+      {
+        "rows": 3,
+        "name": "desc",
+        "type": "text",
+        "title": "Hobby Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "photo",
+        "type": "image",
+        "title": "4:3 Display Photo"
+      }
+    ],
+    "name": "hobby",
+    "type": "document",
+    "title": "Hobbies & Interests"
+  }
+]

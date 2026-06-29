@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-06-29T08:07:03.393Z",
+  "createdAt": "2026-06-29T09:49:28.139Z",
   "studioVersion": "6.2.0",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "default",
       "projectId": "jxgugtpm",
-      "schema": "9cc208a8.create-schema.json",
+      "schema": "fee3aba5.create-schema.json",
       "title": "Christine Portfolio",
       "tools": "a1fd46b5.create-tools.json"
     }

@@ -47,8 +47,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   
-  // HUD Real-Time Engine States
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // Set default initial load to light mode (false)
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [currentDateString, setCurrentDateString] = useState("");
 
@@ -193,16 +193,38 @@ export default function Home() {
         {colors.map((c, i) => <div key={i} className="flex-1" style={{ backgroundColor: c }} />)}
       </div>
 
+      {/* MINIMALIST MOBILE THEME SWITCHER OVERLAY */}
+      <div className="fixed top-20 right-4 z-[100] md:hidden flex items-center gap-1 bg-[#1c1830]/90 backdrop-blur-md border border-[#2a2445] p-1.5 rounded-full shadow-lg">
+        <button 
+          onClick={() => setIsDarkMode(false)}
+          className={`p-2 rounded-full transition-all ${!isDarkMode ? 'bg-[#fcd116] text-[#2c1303]' : 'text-[#8878aa]'}`}
+          aria-label="Set Day Mode"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" style={{ imageRendering: 'pixelated' }}>
+            <rect x="5" y="5" width="14" height="14" fill="currentColor" rx="1" />
+            <rect x="8" y="8" width="8" height="8" fill={!isDarkMode ? "#fff568" : "currentColor"} />
+          </svg>
+        </button>
+        <button 
+          onClick={() => setIsDarkMode(true)}
+          className={`p-2 rounded-full transition-all ${isDarkMode ? 'bg-[#ff5dd4] text-[#12101e]' : 'text-[#8878aa]'}`}
+          aria-label="Set Night Mode"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ imageRendering: 'pixelated' }}>
+            <path d="M12 3a9 9 0 1 0 9 9 9.75 9.75 0 0 1-9-9Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+
       {/* STARDEW VALLEY UNIFIED HUD CONTAINER */}
       <motion.div 
         variants={retroBootVariant}
         initial="initial"
         animate="whileInView"
-        className="fixed top-14 right-4 z-[100] scale-100 md:scale-110 origin-top-right select-none"
+        className="fixed top-14 right-4 z-[100] hidden md:flex flex-col items-center gap-2 scale-100 md:scale-110 origin-top-right select-none"
         style={{ fontFamily: "'Courier New', Courier, monospace" }}
       >
         <div className="relative w-[238px] h-[195px]">
-          {/* Transparent Canvas Frame Base */}
           <img 
             src="/stardew-hud-empty.png" 
             alt="HUD Base" 
@@ -210,7 +232,6 @@ export default function Home() {
             style={{ imageRendering: 'pixelated' }}
           />
 
-          {/* Golden Pointer Arrow */}
           <div 
             className="absolute left-[24px] top-[66px] z-20 transition-transform duration-400 ease-out" 
             style={{ 
@@ -225,12 +246,10 @@ export default function Home() {
             </svg>
           </div>
 
-          {/* Top Field: Date Tracker */}
           <div className="absolute left-[82px] top-[14px] w-[142px] h-[36px] flex items-center justify-center z-10 text-[#2c1303] font-bold text-[22px] tracking-wide antialiased">
             {currentDateString || "Mon. 29"}
           </div>
 
-          {/* LEFT SLOT: SUN ICON */}
           <div className="absolute left-[95px] top-[54px] w-[38px] h-[30px] z-10 flex items-center justify-center overflow-hidden">
             <svg width="22" height="22" viewBox="0 0 24 24" style={{ imageRendering: 'pixelated' }} className={`transition-all duration-300 ${!isDarkMode ? "opacity-100 scale-100" : "opacity-25 scale-90"}`}>
               <rect x="5" y="5" width="14" height="14" fill="#fcd116" rx="1" />
@@ -247,20 +266,10 @@ export default function Home() {
             title="Set Day Mode"
           />
           
-          {/* RIGHT SLOT: MOON ICON */}
           <div className="absolute left-[175px] top-[54px] w-[38px] h-[30px] z-10 flex items-center justify-center overflow-hidden">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ imageRendering: 'pixelated' }} className={`transition-all duration-300 ${isDarkMode ? "opacity-100 scale-100" : "opacity-25 scale-90"}`}>
-              <path 
-                d="M12 3a9 9 0 1 0 9 9 9.75 9.75 0 0 1-9-9Z" 
-                fill="#fcd116" 
-                stroke="#381502"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
-              <path 
-                d="M12 5a7 7 0 1 0 7 7 7.75 7.75 0 0 1-7-7Z" 
-                fill="#fff568" 
-              />
+              <path d="M12 3a9 9 0 1 0 9 9 9.75 9.75 0 0 1-9-9Z" fill="#fcd116" stroke="#381502" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M12 5a7 7 0 1 0 7 7 7.75 7.75 0 0 1-7-7Z" fill="#fff568" />
             </svg>
           </div>
           <button 
@@ -269,16 +278,18 @@ export default function Home() {
             title="Set Night Mode"
           />
 
-          {/* Middle Field: Real System Time display */}
           <div className="absolute left-[82px] top-[88px] w-[142px] h-[38px] flex items-center justify-center z-10 text-[#2c1303] font-bold text-[22px] tracking-normal antialiased">
             {currentTime || "5:12 p.m."}
           </div>
 
-          {/* Bottom Field: Gold Currency Box (Digit-to-Box Grid Alignment) */}
           <div className="absolute left-[75px] top-[158px] w-[148px] h-[38px] z-10 text-[#490707] font-black text-[24px] antialiased tracking-[6px] text-right pr-[5px]">
             500
           </div>
         </div>
+
+        <span className="text-[12px] font-bold tracking-wider text-[#ffffff] uppercase animate-pulse">
+          [ Click ☀️ / 🌙 to toggle theme ]
+        </span>
       </motion.div>
 
       {/* HEADER NAV OVERLAY BAR */}
@@ -301,7 +312,10 @@ export default function Home() {
       >
         <div className="flex-1 w-full text-center lg:text-left px-2">
           <p className="text-[10px] text-[#ff5dd4] font-bold tracking-widest mb-2 uppercase">{profile.eyebrow}</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide">{profile.name}</h1>
+          {/* Forces name straight into 1 single line on screen layouts */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide whitespace-nowrap">
+            christine shane ong
+          </h1>
           <h2 className="text-lg md:text-2xl text-[#ff5dd4] font-bold mb-4 uppercase tracking-wide">{profile.title}</h2>
           <p className="text-sm md:text-lg text-[#8878aa] max-w-[500px] mx-auto lg:mx-0 mb-6 leading-relaxed">{profile.bio}</p>
           
@@ -331,7 +345,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex-shrink-0 flex flex-col items-center gap-2 lg:ml-auto">
+        {/* Nudged picture container slightly to the right using translate layout */}
+        <div className="flex-shrink-0 flex flex-col items-center gap-2 lg:ml-auto transform lg:translate-x-8">
           <div className="w-[280px] sm:w-[320px] md:w-[340px] relative select-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]">
             <img src="/stardew-frame.png" alt="Profile Layout" className="w-full h-auto block object-contain relative z-10" style={{ imageRendering: 'pixelated' }} />
             <div className="absolute top-[8%] left-[8%] w-[84%] h-[84%] overflow-hidden bg-[#18110e] rounded-sm z-0">
