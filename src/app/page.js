@@ -318,8 +318,8 @@ export default function Home() {
       >
         <div className="flex-1 w-full text-center lg:text-left px-2">
           <p className="text-[10px] text-[#ff5dd4] font-bold tracking-widest mb-2 uppercase">{profile.eyebrow}</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide whitespace-nowrap">
-            {profile.name}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide whitespace-normal md:whitespace-nowrap">
+          {profile.name}
           </h1>
           <h2 className="text-lg md:text-2xl text-[#ff5dd4] font-bold mb-4 uppercase tracking-wide">{profile.title}</h2>
           <p className="text-sm md:text-lg text-[#8878aa] max-w-[500px] mx-auto lg:mx-0 mb-6 leading-relaxed">{profile.bio}</p>
