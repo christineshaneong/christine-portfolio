@@ -314,7 +314,7 @@ export default function Home() {
           <p className="text-[10px] text-[#ff5dd4] font-bold tracking-widest mb-2 uppercase">{profile.eyebrow}</p>
           {/* Forces name straight into 1 single line on screen layouts */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide whitespace-nowrap">
-            christine shane ong
+            {profile.name}
           </h1>
           <h2 className="text-lg md:text-2xl text-[#ff5dd4] font-bold mb-4 uppercase tracking-wide">{profile.title}</h2>
           <p className="text-sm md:text-lg text-[#8878aa] max-w-[500px] mx-auto lg:mx-0 mb-6 leading-relaxed">{profile.bio}</p>
@@ -399,7 +399,7 @@ export default function Home() {
             <button onClick={prevProject} className="absolute left-[-12px] sm:left-[-30px] md:left-[-70px] top-[45%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
               <FaChevronLeft className="text-sm md:text-xl" />
             </button>
-            <button onClick={nextProject} className="absolute right-[-12px] sm:right-[-30px] md:left-[-70px] top-[45%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
+            <button onClick={nextProject} className="absolute right-[-12px] sm:right-[-30px] md:right-[-70px] top-[45%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
               <FaChevronRight className="text-sm md:text-xl" />
             </button>
 
