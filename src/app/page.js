@@ -10,7 +10,7 @@ import {
   FaCode, FaTools, FaBrain, FaTerminal
 } from 'react-icons/fa';
 import { SiSpringboot, SiNextdotjs, SiMysql, SiTailwindcss, SiCplusplus, SiPython, SiJavascript, SiHtml5, SiCss, SiPostman } from 'react-icons/si';
-import { HiOutlineCode } from 'react-icons/hi';
+import { HiOutlineCode as CodeIcon } from 'react-icons/hi';
 import { useAnimate, motion } from "framer-motion";
 
 import { client } from '../sanity/lib/client';
@@ -47,7 +47,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   
-  // Set default initial load to light mode (false)
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [currentDateString, setCurrentDateString] = useState("");
@@ -181,19 +180,17 @@ export default function Home() {
   return (
     <div className="bg-[#0a0812] text-[#fef9e7] min-h-screen font-mono relative overflow-x-hidden w-full selection:bg-[#da1c5c]">
       
-      {/* SEPARATE FIXED BACKGROUND IMAGE WRAPPER LAYER (Fixes iOS Safari scale zooming issue) */}
-    <div 
-      style={{ 
-        backgroundImage: currentBgImage !== 'none' ? `url(${currentBgImage})` : 'none',
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-        backgroundRepeat: 'no-repeat',
-        // 1. Add the transition engine back to the style object for Android canvas paint rendering:
-        transition: 'background-image 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
-      }}
-      // 2. Add transition-all and duration-500 utilities to the class list:
-      className="fixed inset-0 w-full h-full z-0 pointer-events-none transition-all duration-500 ease-in-out"
-    />
+      {/* SEPARATE FIXED BACKGROUND IMAGE WRAPPER LAYER */}
+      <div 
+        style={{ 
+          backgroundImage: currentBgImage !== 'none' ? `url(${currentBgImage})` : 'none',
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center', 
+          backgroundRepeat: 'no-repeat',
+          transition: 'background-image 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
+        className="fixed inset-0 w-full h-full z-0 pointer-events-none transition-all duration-500 ease-in-out"
+      />
 
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[9999] hidden md:block" />
 
@@ -224,7 +221,7 @@ export default function Home() {
         </button>
       </div>
 
-      {/* STARDEW VALLEY UNIFIED HUD CONTAINER */}
+      {/* STARDEW VALLEY HUD */}
       <motion.div 
         variants={retroBootVariant}
         initial="initial"
@@ -271,7 +268,6 @@ export default function Home() {
           <button 
             onClick={() => setIsDarkMode(false)}
             className={`absolute left-[94px] top-[53px] w-[40px] h-[32px] z-30 cursor-pointer rounded-sm ${!isDarkMode ? 'bg-amber-500/5' : 'hover:bg-white/5'}`}
-            title="Set Day Mode"
           />
           
           <div className="absolute left-[175px] top-[54px] w-[38px] h-[30px] z-10 flex items-center justify-center overflow-hidden">
@@ -283,7 +279,6 @@ export default function Home() {
           <button 
             onClick={() => setIsDarkMode(true)}
             className={`absolute left-[174px] top-[53px] w-[40px] h-[32px] z-30 cursor-pointer rounded-sm ${isDarkMode ? 'bg-indigo-500/5' : 'hover:bg-white/5'}`}
-            title="Set Night Mode"
           />
 
           <div className="absolute left-[82px] top-[88px] w-[142px] h-[38px] flex items-center justify-center z-10 text-[#2c1303] font-bold text-[22px] tracking-normal antialiased">
@@ -294,13 +289,10 @@ export default function Home() {
             500
           </div>
         </div>
-
-        <span className="text-[12px] font-bold tracking-wider text-[#ffffff] uppercase animate-pulse">
-          [ Click ☀️ / 🌙 to toggle theme ]
-        </span>
+        <span className="text-[12px] font-bold tracking-wider text-[#ffffff] uppercase animate-pulse">[ Click ☀️ / 🌙 to toggle theme ]</span>
       </motion.div>
 
-      {/* HEADER NAV OVERLAY BAR */}
+      {/* HEADER NAVIGATION */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex flex-col sm:flex-row items-center justify-between gap-2 px-4 py-4 bg-[#0a0812]/90 backdrop-blur-md border-b-2 border-[#2a2445]">
         <div className="text-[12px] font-bold text-[#f9c12f] tracking-wider">christine.dev</div>
         <div className="flex items-center gap-4 text-[10px] pr-0 md:pr-64">
@@ -311,7 +303,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO CONTAINER */}
+      {/* HERO SECTION */}
       <motion.header 
         initial={{ opacity: 0, scaleY: 0.01, scaleX: 0.4 }}
         animate={{ opacity: 1, scaleY: 1, scaleX: 1 }}
@@ -321,7 +313,7 @@ export default function Home() {
         <div className="flex-1 w-full text-center lg:text-left px-2">
           <p className="text-[10px] text-[#ff5dd4] font-bold tracking-widest mb-2 uppercase">{profile.eyebrow}</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide whitespace-normal md:whitespace-nowrap">
-          {profile.name}
+            {profile.name}
           </h1>
           <h2 className="text-lg md:text-2xl text-[#ff5dd4] font-bold mb-4 uppercase tracking-wide">{profile.title}</h2>
           <p className="text-sm md:text-lg text-[#8878aa] max-w-[500px] mx-auto lg:mx-0 mb-6 leading-relaxed">{profile.bio}</p>
@@ -356,7 +348,7 @@ export default function Home() {
           <div className="w-[280px] sm:w-[320px] md:w-[340px] relative select-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]">
             <img src="/stardew-frame.png" alt="Profile Layout" className="w-full h-auto block object-contain relative z-10" style={{ imageRendering: 'pixelated' }} />
             <div className="absolute top-[8%] left-[8%] w-[84%] h-[84%] overflow-hidden bg-[#18110e] rounded-sm z-0">
-              {profile.image ? <img src={urlFor(profile.image).url()} alt={profile.name} className="w-full h-full object-cover object-center" /> : <div className="w-full h-full bg-[#1c1830] flex items-center justify-center"><HiOutlineCode className="text-2xl text-[#f9c12f]" /></div>}
+              {profile.image ? <img src={urlFor(profile.image).url()} alt={profile.name} className="w-full h-full object-cover object-center" /> : <div className="w-full h-full bg-[#1c1830] flex items-center justify-center"><CodeIcon className="text-2xl text-[#f9c12f]" /></div>}
             </div>
           </div>
           <div className="inline-flex items-center gap-1.5 bg-[#12101e] border border-[#f9c12f] px-2.5 py-1 text-[9px] text-[#f9c12f] font-bold tracking-wider mt-2">
@@ -365,7 +357,7 @@ export default function Home() {
         </div>
       </motion.header>
 
-      {/* TECH STACK INVENTORY */}
+      {/* SKILLS SECTION */}
       <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="skills" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10">
         <div className="flex items-center gap-3 mb-8">
           <FaLaptopCode className="text-xl text-[#da1c5c]" />
@@ -394,7 +386,7 @@ export default function Home() {
       </motion.section>
 
       {/* FEATURED WORK PROJECTS */}
-      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="projects" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10">
+      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="projects" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10 pb-28">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Featured Work</h3>
           <div className="flex-1 h-[1px] bg-[#2a2445]" />
@@ -402,25 +394,42 @@ export default function Home() {
 
         {activeProject && (
           <div className="relative w-full max-w-4xl mx-auto flex items-center justify-center pt-4">
-            <button onClick={prevProject} className="absolute left-[-12px] sm:left-[-30px] md:left-[-70px] top-[45%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
+            <button onClick={prevProject} className="absolute left-[-12px] sm:left-[-30px] md:left-[-70px] top-[50%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
               <FaChevronLeft className="text-sm md:text-xl" />
             </button>
-            <button onClick={nextProject} className="absolute right-[-12px] sm:right-[-30px] md:right-[-70px] top-[45%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
+            <button onClick={nextProject} className="absolute right-[-12px] sm:right-[-30px] md:left-auto md:right-[-70px] top-[50%] -translate-y-1/2 z-[100] bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] p-3 rounded-full transition-all hover:text-[#ff9846]">
               <FaChevronRight className="text-sm md:text-xl" />
             </button>
 
+            {/* Laptop Frame Container */}
             <div className="w-full bg-[#1c1830] border-[4px] sm:border-[6px] md:border-[12px] border-[#2a2445] rounded-t-2xl p-3 shadow-2xl relative">
-              <div className="w-full bg-[#0a0812] border border-[#2a2445] rounded p-4 sm:p-8 flex flex-col md:flex-row gap-6 items-center min-h-[340px]">
-                <div className="flex-1 text-left w-full flex flex-col justify-between h-full">
-                  <div>
-                    <span className="text-[10px] font-bold text-[#ff5dd4] block mb-1">Build Unit: 0{currentProjectIdx + 1} / 0{projects.length}</span>
-                    <h4 className="text-xl md:text-2xl font-bold text-white mb-3 uppercase tracking-wide">{activeProject.name}</h4>
-                    <p className="text-xs md:text-sm text-[#8878aa] mb-4 max-w-lg">{activeProject.desc}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-6">
+              {/* Force identical rigid screen container sizing to prevent structural jumps */}
+              <div className="w-full bg-[#0a0812] border border-[#2a2445] rounded p-4 sm:p-6 flex flex-col md:flex-row gap-6 items-center h-[520px] md:h-[430px]">
+                <div className="flex-1 text-left w-full flex flex-col justify-between h-full overflow-hidden">
+                  
+                  <div className="flex-1 pr-1 overflow-hidden flex flex-col justify-start">
+                    <span className="text-[10px] font-bold text-[#ff5dd4] block mb-1 flex-shrink-0">Build Unit: 0{currentProjectIdx + 1} / 0{projects.length}</span>
+                    
+                    {/* Fixed title segment container to keep title heights from shifting overall layouts */}
+                    <div className="h-[60px] md:h-[70px] overflow-hidden mb-1 flex items-center">
+                      <h4 className="text-sm sm:text-base md:text-lg font-bold text-white uppercase tracking-wide leading-tight line-clamp-2">
+                        {activeProject.name}
+                      </h4>
+                    </div>
+
+                    {/* Fixed description height with custom micro-scroll territory to protect full layout boundaries perfectly */}
+                    <div className="h-[140px] md:h-[160px] overflow-y-auto pr-1 text-[#8878aa] text-xs leading-relaxed custom-scrollbar mb-4 select-text">
+                      <p>{activeProject.desc}</p>
+                    </div>
+
+                    {/* Chips section locked into a stable flex footprint */}
+                    <div className="flex flex-wrap gap-1.5 h-[50px] overflow-hidden content-start flex-shrink-0">
                       {activeProject.chips?.map((c, i) => <span key={i} className="text-[10px] px-2 py-0.5 bg-[#12101e] border border-[#2a2445] text-[#8878aa] rounded-sm">{c}</span>)}
                     </div>
                   </div>
-                  <div className="flex gap-2.5 pt-4 border-t border-[#2a2445]">
+
+                  {/* Operational Footer remains safely anchored */}
+                  <div className="flex gap-2.5 pt-3 border-t border-[#2a2445] mt-auto flex-shrink-0">
                     <a href={activeProject.liveUrl || '#'} target="_blank" rel="noreferrer" className="flex-1 text-center bg-[#ff9846] text-[#0a0812] font-bold text-[10px] py-3 rounded flex items-center justify-center gap-2 hover:bg-[#ffe39c]">
                       <FaExternalLinkAlt /> LIVE WEBSITE
                     </a>
@@ -428,15 +437,16 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* Simulated Device Screen Aspect ratio is static */}
                 {activeProject.liveUrl ? (
-                  <div className="hidden md:block w-full md:w-[380px] h-[240px] bg-[#000] border-2 border-[#2a2445] relative overflow-hidden rounded">
-                    <div className="w-[1280px] h-[810px] origin-top-left absolute left-0 top-0" style={{ transform: 'scale(0.296875)' }}> 
+                  <div className="hidden md:block w-full md:w-[380px] h-[260px] bg-[#000] border-2 border-[#2a2445] relative overflow-hidden rounded flex-shrink-0 self-center">
+                    <div className="w-[1280px] h-[880px] origin-top-left absolute left-0 top-0" style={{ transform: 'scale(0.296875)' }}> 
                       <iframe src={activeProject.liveUrl} className="w-full h-full border-0 bg-white" sandbox="allow-scripts allow-same-origin" loading="lazy" />
                     </div>
                   </div>
                 ) : (
-                  <div className="hidden md:flex w-full md:w-[380px] h-[240px] bg-[#000] border-2 border-[#2a2445] flex-col items-center justify-center text-[#8878aa] rounded">
-                    <HiOutlineCode className="text-4xl text-[#ff5dd4] animate-pulse" />
+                  <div className="hidden md:flex w-full md:w-[380px] h-[260px] bg-[#000] border-2 border-[#2a2445] flex-col items-center justify-center text-[#8878aa] rounded flex-shrink-0 self-center">
+                    <CodeIcon className="text-4xl text-[#ff5dd4] animate-pulse" />
                     <span className="text-[9px] tracking-widest">[ Missing Path ]</span>
                   </div>
                 )}
@@ -447,7 +457,7 @@ export default function Home() {
         )}
       </motion.section>
 
-      {/* INTERACTIVE HOBBIES STACK BLOCK */}
+      {/* HOBBIES MATRIX */}
       <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} className="max-w-[1100px] mx-auto px-4 py-12 w-full pt-16 relative overflow-visible z-10">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Hobbies Matrix</h3>
@@ -494,7 +504,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* BACKGROUND MATRIX GRID */}
+      {/* BACKGROUND MATRIX */}
       <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="about" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Background matrix</h3>
@@ -502,7 +512,7 @@ export default function Home() {
         </div>
         <motion.div variants={popContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 CGPA" },
+            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 GPA" },
             { icon: <FaMusic className="text-xl text-[#ff5dd4]" />, title: "Acoustic Logic", desc: "ABRSM Grade 8 Classical Pianist" },
             { icon: <FaAward className="text-xl text-[#f15a29]" />, title: "Leadership Roles", desc: "SOF-EA Officer & Coordinator" },
             { icon: <FaLanguage className="text-xl text-[#ff9846]" />, title: "Languages Node", desc: "English, 中文, BM, Bahasa Indonesia" }
@@ -518,7 +528,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* COMMS TERMINAL FOOTER */}
+      {/* CONTACT FOOTER */}
       <motion.footer initial={{ opacity: 0, scaleY: 0.005 }} whileInView={{ opacity: 1, scaleY: 1 }} transition={{ type: "spring", stiffness: 100, damping: 12 }} viewport={{ once: true }} id="contact" className="max-w-[1100px] mx-auto px-4 pb-20 pt-8 w-full relative z-10">
         <div className="border-2 border-[#f9c12f] p-6 bg-[#12101e]/90 backdrop-blur-md text-center rounded">
           <h3 className="text-sm font-bold text-[#f9c12f] mb-2 tracking-wider uppercase">ESTABLISH COMMS TERMINAL</h3>
