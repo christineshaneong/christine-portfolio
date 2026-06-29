@@ -188,9 +188,7 @@ export default function Home() {
 
   if (loading || !profile) {
     return (
-      <div className="bg-[#0a0812] text-[#fef9e7] min-h-screen font-mono flex items-center justify-center">
-        <p className="text-[#f9c12f] animate-pulse text-xs uppercase tracking-widest">Establishing secure database stream...</p>
-      </div>
+      <div className="bg-[#0a0812] min-h-screen w-full" />
     );
   }
 
