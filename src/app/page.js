@@ -7,7 +7,7 @@ import {
   FaGraduationCap, FaMusic, FaAward, FaLanguage, 
   FaGithub, FaLinkedin, FaExternalLinkAlt,
   FaInstagram, FaYoutube, FaChevronLeft, FaChevronRight,
-  FaCode, FaTools, FaBrain, FaTerminal
+  FaCode, FaTools, FaBrain, FaTerminal, FaEnvelope, FaPhoneAlt
 } from 'react-icons/fa';
 import { SiSpringboot, SiNextdotjs, SiMysql, SiTailwindcss, SiCplusplus, SiPython, SiJavascript, SiHtml5, SiCss, SiPostman } from 'react-icons/si';
 import { HiOutlineCode as CodeIcon } from 'react-icons/hi';
@@ -86,7 +86,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchPortfolioData() {
       try {
-        const profileData = await client.fetch(`*[_type == "profile"][0]{ ..., "resumeUrl": resume.asset->url }`);
+        const profileData = await client.fetch(`*[_type == "profile"][0]{ ..., phone, email, "resumeUrl": resume.asset->url }`);
         const projectsData = await client.fetch(`*[_type == "project"]`);
         const hobbiesData = await client.fetch(`*[_type == "hobby"] | order(id asc)`);
 
@@ -325,7 +325,7 @@ export default function Home() {
 
           <div className="grid grid-cols-3 gap-2 max-w-[380px] mx-auto lg:mx-0 text-left">
             {[
-              { label: "CGPA", val: profile.gpa, color: "text-[#f9c12f]" },
+              { label: "GPA", val: profile.gpa, color: "text-[#f9c12f]" },
               { label: "Projects", val: projects.length, color: "text-[#da1c5c]" },
               { label: "Piano", val: "Grade 8", color: "text-[#ff5dd4]" }
             ].map((stat, idx) => (
@@ -403,32 +403,27 @@ export default function Home() {
 
             {/* Laptop Frame Container */}
             <div className="w-full bg-[#1c1830] border-[4px] sm:border-[6px] md:border-[12px] border-[#2a2445] rounded-t-2xl p-3 shadow-2xl relative">
-              {/* Force identical rigid screen container sizing to prevent structural jumps */}
               <div className="w-full bg-[#0a0812] border border-[#2a2445] rounded p-4 sm:p-6 flex flex-col md:flex-row gap-6 items-center h-[520px] md:h-[430px]">
                 <div className="flex-1 text-left w-full flex flex-col justify-between h-full overflow-hidden">
                   
                   <div className="flex-1 pr-1 overflow-hidden flex flex-col justify-start">
                     <span className="text-[10px] font-bold text-[#ff5dd4] block mb-1 flex-shrink-0">Build Unit: 0{currentProjectIdx + 1} / 0{projects.length}</span>
                     
-                    {/* Fixed title segment container to keep title heights from shifting overall layouts */}
                     <div className="h-[60px] md:h-[70px] overflow-hidden mb-1 flex items-center">
                       <h4 className="text-sm sm:text-base md:text-lg font-bold text-white uppercase tracking-wide leading-tight line-clamp-2">
                         {activeProject.name}
                       </h4>
                     </div>
 
-                    {/* Fixed description height with custom micro-scroll territory to protect full layout boundaries perfectly */}
                     <div className="h-[140px] md:h-[160px] overflow-y-auto pr-1 text-[#8878aa] text-xs leading-relaxed custom-scrollbar mb-4 select-text">
                       <p>{activeProject.desc}</p>
                     </div>
 
-                    {/* Chips section locked into a stable flex footprint */}
                     <div className="flex flex-wrap gap-1.5 h-[50px] overflow-hidden content-start flex-shrink-0">
                       {activeProject.chips?.map((c, i) => <span key={i} className="text-[10px] px-2 py-0.5 bg-[#12101e] border border-[#2a2445] text-[#8878aa] rounded-sm">{c}</span>)}
                     </div>
                   </div>
 
-                  {/* Operational Footer remains safely anchored */}
                   <div className="flex gap-2.5 pt-3 border-t border-[#2a2445] mt-auto flex-shrink-0">
                     <a href={activeProject.liveUrl || '#'} target="_blank" rel="noreferrer" className="flex-1 text-center bg-[#ff9846] text-[#0a0812] font-bold text-[10px] py-3 rounded flex items-center justify-center gap-2 hover:bg-[#ffe39c]">
                       <FaExternalLinkAlt /> LIVE WEBSITE
@@ -437,7 +432,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Simulated Device Screen Aspect ratio is static */}
                 {activeProject.liveUrl ? (
                   <div className="hidden md:block w-full md:w-[380px] h-[260px] bg-[#000] border-2 border-[#2a2445] relative overflow-hidden rounded flex-shrink-0 self-center">
                     <div className="w-[1280px] h-[880px] origin-top-left absolute left-0 top-0" style={{ transform: 'scale(0.296875)' }}> 
@@ -512,7 +506,7 @@ export default function Home() {
         </div>
         <motion.div variants={popContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 CGPA" },
+            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 GPA" },
             { icon: <FaMusic className="text-xl text-[#ff5dd4]" />, title: "Acoustic Logic", desc: "ABRSM Grade 8 Classical Pianist" },
             { icon: <FaAward className="text-xl text-[#f15a29]" />, title: "Leadership Roles", desc: "SOF-EA Officer & Coordinator" },
             { icon: <FaLanguage className="text-xl text-[#ff9846]" />, title: "Languages Node", desc: "English, 中文, BM, Bahasa Indonesia" }
@@ -533,11 +527,19 @@ export default function Home() {
         <div className="border-2 border-[#f9c12f] p-6 bg-[#12101e]/90 backdrop-blur-md text-center rounded">
           <h3 className="text-sm font-bold text-[#f9c12f] mb-2 tracking-wider uppercase">ESTABLISH COMMS TERMINAL</h3>
           <p className="text-xs text-[#8878aa] mb-5 max-w-sm mx-auto leading-relaxed">Open for 2026 internships. Based in Malaysia. Available for remote work.</p>
-          <div className="grid grid-cols-2 gap-2 max-w-sm mx-auto w-full">
-            <a href={profile.github || '#'} target="_blank" rel="noreferrer" className="bg-[#1c1830] border border-[#2a2445] text-[#8878aa] text-[10px] py-2.5 rounded flex items-center justify-center gap-1.5 hover:text-white">
+          
+          {/* Enhanced Grid Matrix containing Sanity Contact Info + Social links */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-xl mx-auto w-full mt-4">
+            <a href={`mailto:${profile.email}`} className="bg-[#1c1830] border border-[#2a2445] hover:border-[#f9c12f] text-[#8878aa] hover:text-white text-[10px] py-3 rounded flex items-center justify-center gap-2 transition-all font-bold">
+              <FaEnvelope className="text-xs text-[#da1c5c]" /> {profile.email || "christine@dev.com"}
+            </a>
+            <a href={`tel:${profile.phone}`} className="bg-[#1c1830] border border-[#2a2445] hover:border-[#f9c12f] text-[#8878aa] hover:text-white text-[10px] py-3 rounded flex items-center justify-center gap-2 transition-all font-bold">
+              <FaPhoneAlt className="text-xs text-[#f9c12f]" /> {profile.phone || "+60 12-345 6789"}
+            </a>
+            <a href={profile.github || '#'} target="_blank" rel="noreferrer" className="bg-[#1c1830] border border-[#2a2445] hover:border-[#f9c12f] text-[#8878aa] text-[10px] py-2.5 rounded flex items-center justify-center gap-1.5 hover:text-white transition-all">
               <FaGithub /> GITHUB
             </a>
-            <a href={profile.linkedin || '#'} target="_blank" rel="noreferrer" className="bg-[#1c1830] border border-[#2a2445] text-[#8878aa] text-[10px] py-2.5 rounded flex items-center justify-center gap-1.5 hover:text-white">
+            <a href={profile.linkedin || '#'} target="_blank" rel="noreferrer" className="bg-[#1c1830] border border-[#2a2445] hover:border-[#f9c12f] text-[#8878aa] text-[10px] py-2.5 rounded flex items-center justify-center gap-1.5 hover:text-white transition-all">
               <FaLinkedin /> LINKEDIN
             </a>
           </div>

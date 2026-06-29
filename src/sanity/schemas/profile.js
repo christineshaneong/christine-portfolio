@@ -65,6 +65,16 @@ export default {
       type: 'url',
     },
     {
+      name: 'phone',
+      title: 'Contact Number',
+      type: 'string',
+    },
+    {
+      name: 'email',
+      title: 'Email Address',
+      type: 'string',
+    },
+    {
     name: 'backgroundImage',
     title: 'Background Image',
     type: 'image',
