@@ -288,12 +288,11 @@ export default function Home() {
             <a href={profile.resumeUrl || '#'} download="resume.pdf" className="bg-[#1c1830] border-2 border-[#2a2445] text-[#8878aa] hover:text-[#f9c12f] hover:border-[#f9c12f] font-bold text-xs text-center px-6 py-3.5 transition-all">RESUME ↓</a>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 max-w-[350px] mx-auto lg:mx-0 text-left">
+          <div className="grid grid-cols-3 gap-2 max-w-[380px] mx-auto lg:mx-0 text-left">
             {[
               { label: "GPA", val: profile.gpa, color: "text-[#f9c12f]" },
               { label: "Projects", val: projects.length, color: "text-[#da1c5c]" },
-              { label: "Piano", val: "Grade 8", color: "text-[#ff5dd4]" },
-              { label: "CMS", val: "Sanity.io", color: "text-[#ff9846]" }
+              { label: "Piano", val: "Grade 8", color: "text-[#ff5dd4]" }
             ].map((stat, idx) => (
               <div key={idx} className="bg-[#1c1830]/80 backdrop-blur-sm border border-[#2a2445] p-2.5 rounded">
                 <span className={`text-sm font-bold block ${stat.color}`}>{stat.val}</span>
@@ -302,11 +301,11 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="flex justify-center lg:justify-start gap-4 mt-6 text-xl text-[#8878aa]">
-            <a href={profile.github || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] transition-colors"><FaGithub /></a>
-            <a href={profile.linkedin || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] transition-colors"><FaLinkedin /></a>
-            <a href={profile.instagram || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] transition-colors"><FaInstagram /></a>
-            <a href={profile.youtube || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] transition-colors"><FaYoutube /></a>
+          <div className="flex justify-center lg:justify-start gap-5 mt-6 text-2xl text-[#fef9e7]">
+            <a href={profile.github || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] transition-colors"><FaGithub /></a>
+            <a href={profile.linkedin || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] transition-colors"><FaLinkedin /></a>
+            <a href={profile.instagram || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] transition-colors"><FaInstagram /></a>
+            <a href={profile.youtube || '#'} target="_blank" rel="noreferrer" className="hover:text-[#f9c12f] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] transition-colors"><FaYoutube /></a>
           </div>
         </div>
 
