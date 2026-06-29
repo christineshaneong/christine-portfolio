@@ -325,7 +325,7 @@ export default function Home() {
 
           <div className="grid grid-cols-3 gap-2 max-w-[380px] mx-auto lg:mx-0 text-left">
             {[
-              { label: "GPA", val: profile.gpa, color: "text-[#f9c12f]" },
+              { label: "CGPA", val: profile.gpa, color: "text-[#f9c12f]" },
               { label: "Projects", val: projects.length, color: "text-[#da1c5c]" },
               { label: "Piano", val: "Grade 8", color: "text-[#ff5dd4]" }
             ].map((stat, idx) => (
@@ -506,7 +506,7 @@ export default function Home() {
         </div>
         <motion.div variants={popContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 GPA" },
+            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 CGPA" },
             { icon: <FaMusic className="text-xl text-[#ff5dd4]" />, title: "Acoustic Logic", desc: "ABRSM Grade 8 Classical Pianist" },
             { icon: <FaAward className="text-xl text-[#f15a29]" />, title: "Leadership Roles", desc: "SOF-EA Officer & Coordinator" },
             { icon: <FaLanguage className="text-xl text-[#ff9846]" />, title: "Languages Node", desc: "English, 中文, BM, Bahasa Indonesia" }
