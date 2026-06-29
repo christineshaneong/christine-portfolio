@@ -182,16 +182,18 @@ export default function Home() {
     <div className="bg-[#0a0812] text-[#fef9e7] min-h-screen font-mono relative overflow-x-hidden w-full selection:bg-[#da1c5c]">
       
       {/* SEPARATE FIXED BACKGROUND IMAGE WRAPPER LAYER (Fixes iOS Safari scale zooming issue) */}
-      <div 
-        style={{ 
-          backgroundImage: currentBgImage !== 'none' ? `url(${currentBgImage})` : 'none',
-          backgroundSize: 'cover', 
-          backgroundPosition: 'center', 
-          backgroundRepeat: 'no-repeat',
-          transition: 'background-image 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
-        }}
-        className="fixed inset-0 w-full h-full z-0 pointer-events-none"
-      />
+    <div 
+      style={{ 
+        backgroundImage: currentBgImage !== 'none' ? `url(${currentBgImage})` : 'none',
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center', 
+        backgroundRepeat: 'no-repeat',
+        // 1. Add the transition engine back to the style object for Android canvas paint rendering:
+        transition: 'background-image 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}
+      // 2. Add transition-all and duration-500 utilities to the class list:
+      className="fixed inset-0 w-full h-full z-0 pointer-events-none transition-all duration-500 ease-in-out"
+    />
 
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[9999] hidden md:block" />
 
