@@ -179,14 +179,20 @@ export default function Home() {
   ];
 
   return (
-    <div 
-      style={{ 
-        backgroundImage: currentBgImage !== 'none' ? `url(${currentBgImage})` : 'none',
-        backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed',
-        transition: 'background-image 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
-      }}
-      className="bg-[#0a0812] text-[#fef9e7] min-h-screen font-mono relative overflow-x-hidden w-full selection:bg-[#da1c5c]"
-    >
+    <div className="bg-[#0a0812] text-[#fef9e7] min-h-screen font-mono relative overflow-x-hidden w-full selection:bg-[#da1c5c]">
+      
+      {/* SEPARATE FIXED BACKGROUND IMAGE WRAPPER LAYER (Fixes iOS Safari scale zooming issue) */}
+      <div 
+        style={{ 
+          backgroundImage: currentBgImage !== 'none' ? `url(${currentBgImage})` : 'none',
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center', 
+          backgroundRepeat: 'no-repeat',
+          transition: 'background-image 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
+        className="fixed inset-0 w-full h-full z-0 pointer-events-none"
+      />
+
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[9999] hidden md:block" />
 
       <div className="flex h-[4px] fixed top-0 left-0 right-0 z-[200]">
@@ -308,11 +314,10 @@ export default function Home() {
         initial={{ opacity: 0, scaleY: 0.01, scaleX: 0.4 }}
         animate={{ opacity: 1, scaleY: 1, scaleX: 1 }}
         transition={{ type: "spring", stiffness: 140, damping: 15 }}
-        className="max-w-[1100px] mx-auto px-4 pt-36 pb-12 min-h-screen flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full"
+        className="max-w-[1100px] mx-auto px-4 pt-36 pb-12 min-h-screen flex flex-col-reverse lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full relative z-10"
       >
         <div className="flex-1 w-full text-center lg:text-left px-2">
           <p className="text-[10px] text-[#ff5dd4] font-bold tracking-widest mb-2 uppercase">{profile.eyebrow}</p>
-          {/* Forces name straight into 1 single line on screen layouts */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 text-white drop-shadow-[3px_3px_0px_#da1c5c] tracking-wide whitespace-nowrap">
             {profile.name}
           </h1>
@@ -345,7 +350,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Nudged picture container slightly to the right using translate layout */}
         <div className="flex-shrink-0 flex flex-col items-center gap-2 lg:ml-auto transform lg:translate-x-8">
           <div className="w-[280px] sm:w-[320px] md:w-[340px] relative select-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]">
             <img src="/stardew-frame.png" alt="Profile Layout" className="w-full h-auto block object-contain relative z-10" style={{ imageRendering: 'pixelated' }} />
@@ -360,7 +364,7 @@ export default function Home() {
       </motion.header>
 
       {/* TECH STACK INVENTORY */}
-      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="skills" className="max-w-[1100px] mx-auto px-4 py-12 w-full">
+      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="skills" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10">
         <div className="flex items-center gap-3 mb-8">
           <FaLaptopCode className="text-xl text-[#da1c5c]" />
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Tech Stack Inventory</h3>
@@ -388,7 +392,7 @@ export default function Home() {
       </motion.section>
 
       {/* FEATURED WORK PROJECTS */}
-      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="projects" className="max-w-[1100px] mx-auto px-4 py-12 w-full">
+      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="projects" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Featured Work</h3>
           <div className="flex-1 h-[1px] bg-[#2a2445]" />
@@ -442,7 +446,7 @@ export default function Home() {
       </motion.section>
 
       {/* INTERACTIVE HOBBIES STACK BLOCK */}
-      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} className="max-w-[1100px] mx-auto px-4 py-12 w-full pt-16 relative overflow-visible">
+      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} className="max-w-[1100px] mx-auto px-4 py-12 w-full pt-16 relative overflow-visible z-10">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Hobbies Matrix</h3>
           <div className="flex-1 h-[1px] bg-[#2a2445]" />
@@ -489,7 +493,7 @@ export default function Home() {
       </motion.section>
 
       {/* BACKGROUND MATRIX GRID */}
-      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="about" className="max-w-[1100px] mx-auto px-4 py-12 w-full">
+      <motion.section variants={retroBootVariant} initial="initial" whileInView="whileInView" viewport={retroBootVariant.viewport} id="about" className="max-w-[1100px] mx-auto px-4 py-12 w-full relative z-10">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="font-bold text-xs text-white tracking-wider uppercase">Background matrix</h3>
           <div className="flex-1 h-[1px] bg-[#2a2445]" />
@@ -513,7 +517,7 @@ export default function Home() {
       </motion.section>
 
       {/* COMMS TERMINAL FOOTER */}
-      <motion.footer initial={{ opacity: 0, scaleY: 0.005 }} whileInView={{ opacity: 1, scaleY: 1 }} transition={{ type: "spring", stiffness: 100, damping: 12 }} viewport={{ once: true }} id="contact" className="max-w-[1100px] mx-auto px-4 pb-20 pt-8 w-full">
+      <motion.footer initial={{ opacity: 0, scaleY: 0.005 }} whileInView={{ opacity: 1, scaleY: 1 }} transition={{ type: "spring", stiffness: 100, damping: 12 }} viewport={{ once: true }} id="contact" className="max-w-[1100px] mx-auto px-4 pb-20 pt-8 w-full relative z-10">
         <div className="border-2 border-[#f9c12f] p-6 bg-[#12101e]/90 backdrop-blur-md text-center rounded">
           <h3 className="text-sm font-bold text-[#f9c12f] mb-2 tracking-wider uppercase">ESTABLISH COMMS TERMINAL</h3>
           <p className="text-xs text-[#8878aa] mb-5 max-w-sm mx-auto leading-relaxed">Open for 2026 internships. Based in Malaysia. Available for remote work.</p>
