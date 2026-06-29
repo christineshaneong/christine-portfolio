@@ -502,7 +502,7 @@ export default function Home() {
         </div>
         <motion.div variants={popContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 GPA" },
+            { icon: <FaGraduationCap className="text-xl text-[#f9c12f]" />, title: "Education Node", desc: "UTM Computer Science · 3.9 CGPA" },
             { icon: <FaMusic className="text-xl text-[#ff5dd4]" />, title: "Acoustic Logic", desc: "ABRSM Grade 8 Classical Pianist" },
             { icon: <FaAward className="text-xl text-[#f15a29]" />, title: "Leadership Roles", desc: "SOF-EA Officer & Coordinator" },
             { icon: <FaLanguage className="text-xl text-[#ff9846]" />, title: "Languages Node", desc: "English, 中文, BM, Bahasa Indonesia" }
